@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport')
 const cors = require ('cors')
+const port = process.env.PORT || 5000
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const { sequelize: db } = require("./database");
@@ -85,7 +86,7 @@ const configApp = () => {
 
 
 
-const listen = () => app.listen(8080, () => console.log(`Listening on port: ${8080}`));
+const listen = () => app.listen(port, () => console.log(`Listening on port: ${8080}`));
 
 
 

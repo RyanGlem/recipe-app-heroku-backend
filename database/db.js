@@ -2,9 +2,16 @@ const Sequelize = require('sequelize')
 const dotenv = require('dotenv')
 dotenv.config()
 
-const sequelize = new Sequelize('posterior-chain', 'postgres', process.env.DATABASE_PASS, {
-    host: 'localhost',
-    dialect: 'postgres'
+const sequelize = new Sequelize(process.env.DATABASE_URL, process.env.DATABASE_PASS, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+
+      ssl: {
+        sslmode: 'require',
+        rejectUnauthorized: false
+      }
+    }
   });
 
 const testDB = async () => {
