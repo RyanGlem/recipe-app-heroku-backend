@@ -2,10 +2,10 @@
   "name": "recipe-db",
   "version": "1.0.0",
   "description": "banger-db",
-  "main": "./bin/www",
+  "main": "app.js",
   "scripts": {
     "test": "echo\"Error: no test specified\" && exit",
-    "start": "node ./bin/www"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
