@@ -2,15 +2,14 @@
   "name": "recipe-db",
   "version": "1.0.0",
   "description": "banger-db",
-  "main": "./routes/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo\"Error: no test specified\" && exit",
     "start": "node ./bin/www"
   },
-  "keywords": [
-    "example",
-    "heroku"
-  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "connect-session-sequelize": "^7.1.0",
     "cookie-parser": "~1.4.4",
