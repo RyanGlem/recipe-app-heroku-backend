@@ -1,10 +1,16 @@
 {
   "name": "recipe-db",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "main": "app.js",
   "scripts": {
+    "test": "echo\"Error: no test specified\" && exit",
     "start": "node ./bin/www"
   },
+
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "dependencies": {
     "connect-session-sequelize": "^7.1.0",
     "cookie-parser": "~1.4.4",
@@ -20,5 +26,9 @@
     "passport": "^0.4.1",
     "pg": "^8.5.1",
     "sequelize": "^6.4.0"
+  },
+
+  "engines": {
+    "node":"14.15.3"
   }
 }
