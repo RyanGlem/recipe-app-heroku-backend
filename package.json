@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node ./database/index.js"
   },
   "dependencies": {
     "connect-session-sequelize": "^7.1.0",
