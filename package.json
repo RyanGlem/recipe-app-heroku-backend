@@ -2,7 +2,7 @@
   "name": "recipe-db",
   "version": "1.0.0",
   "description": "banger-db",
-  "main": "index.js",
+  "main": "./routes/index.js",
   "scripts": {
     "test": "echo\"Error: no test specified\" && exit",
     "start": "node ./bin/www"
