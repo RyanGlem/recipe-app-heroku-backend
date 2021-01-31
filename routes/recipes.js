@@ -42,9 +42,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', upload.any(), (req, res, next) => {
-	if (req?.user ?? false) {
-		models.Recipe
-			.create({ ...req.body, imageUrl: `${staticRoute}${(req?.files?.[0]?.filename ?? req?.file?.filename)}` , userId: req.user.id })
+	console.log('USER: ', JSON.stringify(req.files, null, 2))
+	if (!!(req?.user ?? false)) {
+		const hasFile = (req?.files?.[0]?.filename ?? false) || (req?.file?.filename ?? false) 
+	       models.Recipe
+			.create({ ...req.body, imageUrl: (!!hasFile && `${staticRoute}${(req?.files?.[0]?.filename ?? req?.file?.filename)}`) || undefined , userId: req.user.id })
 			.then(recipe => {
 				res.status(200)
 				.json({
@@ -63,6 +65,9 @@ router.post('/', upload.any(), (req, res, next) => {
 			res.status(403).json({ message: "ERROR: Login Required" })
 		}
 })
+
+	
+
 
 router.put('/', (req, res, next) => {
 

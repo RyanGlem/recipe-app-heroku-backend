@@ -21,7 +21,7 @@ const Recipe = db.sequelize.define('recipe', {
 	imageUrl: {
 		type: Sequelize.STRING,
 		isURL: true,
-		defaultValue: '',
+		defaultValue: '/static/default.png',
 	},
 });
 

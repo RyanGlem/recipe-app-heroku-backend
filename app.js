@@ -46,7 +46,8 @@ const configApp = () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
-  app.use(cors({ credentials: true }))
+   app.use(cors({ credentials: true, origin: [
+    "https://recipeio.netlify.app/", "https://capstone-recipe-db.herokuapp.com/" ], exposedHeaders: ["set-cookie"] }))
 
   app.use('/static', express.static(path.join(__dirname, 'public', 'uploads')))
 
@@ -55,7 +56,8 @@ const configApp = () => {
       secret: "a super secretive secret key string to encrypt and sign the cookie",
       store: sessionStore,
       resave: false,
-      saveUninitialized: false
+      saveUninitialized: false,
+      cookie: {}
     })
   );
 
