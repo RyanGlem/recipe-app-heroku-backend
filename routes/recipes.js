@@ -43,26 +43,32 @@ router.get('/', function(req, res, next) {
 
 router.post('/', upload.any(), (req, res, next) => {
 	if (req?.user ?? false) {
-		models.Recipe
-			.create({ ...req.body, imageUrl: `${staticRoute}${(req?.files?.[0]?.filename ?? req?.file?.filename)}` , userId: req.user.id })
-			.then(recipe => {
-				res.status(200)
-				.json({
-					message: "Created Recipe",
-					recipe
-				});
-			})
-			.catch (error => {
-				res.status(409)
-				.json({
-					message: "ERROR: Failed to Create",
-					error
-				});
-			})
-		} else {
-			res.status(403).json({ message: "ERROR: Login Required" })
-		}
-})
+		console.log('USER: ', JSON.stringify(req.files, null, 2))
+	if (!!(req?.user ?? false)) {
+		const hasFile = (req?.files?.[0]?.filename ?? false) || (req?.file?.filename ?? false) 
+
+		models.Recipe			models.Recipe
+			.create({ ...req.body, imageUrl: `${staticRoute}${(req?.files?.[0]?.filename ?? req?.file?.filename)}` , userId: req.user.id })				.create({ ...req.body, imageUrl: (!!hasFile && `${staticRoute}${(req?.files?.[0]?.filename ?? req?.file?.filename)}`) || undefined , userId: req.user.id })
+			.then(recipe => {				.then(recipe => {
+				res.status(200)					res.status(200)
+				.json({					.json({
+					message: "Created Recipe",						message: "Created Recipe",
+					recipe						recipe
+				});					});
+			})				})
+			.catch (error => {				.catch (error => {
+				res.status(409)					res.status(409)
+				.json({					.json({
+					message: "ERROR: Failed to Create",						message: "ERROR: Failed to Create",
+					error						error
+				});					});
+			})				})
+		} else {			} else {
+			res.status(403).json({ message: "ERROR: Login Required" })				res.status(403).json({ message: "ERROR: Login Required" })
+		}			}
+})	})
+router.put('/', (req, res, next) => {	router.put('/', (req, res, next) => {
+})	})
 
 router.put('/', (req, res, next) => {
 
