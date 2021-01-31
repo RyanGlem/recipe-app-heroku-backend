@@ -3,7 +3,6 @@ const router = express.Router();
 const { User } = require("../database/models");
 
 router.post("/login", async (req, res, next) => {
-  res.set('Access-Control-Allow-Origin', 'https://recipeio.netlify.app')
   try {
     const user = await User.findOne({ 
         where: (req.body?.email ?? false) ? { email: req.body.email } : { username: req.body.username } 
@@ -15,6 +14,7 @@ router.post("/login", async (req, res, next) => {
       res.status(401).send("Wrong username and/or password");
     }
     else {
+      res.set('Access-Control-Allow-Origin', 'https://recipeio.netlify.app')
       req.login(user, err => (err ? next(err) : res.json(user)));
     }
   }
@@ -24,8 +24,8 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res, next) => {
-  res.set('Access-Control-Allow-Origin', 'https://recipeio.netlify.app')
   try {
+    res.set('Access-Control-Allow-Origin', 'https://recipeio.netlify.app')
     const user = await User.create(req.body);
     req.login(user, err => (err ? next(err) : res.json(user)));
   }
@@ -40,7 +40,6 @@ router.post("/signup", async (req, res, next) => {
 });
 
 router.delete("/logout", (req, res, next) => {
-  res.set('Access-Control-Allow-Origin', 'https://recipeio.netlify.app')
   req.logout();
   req.session.destroy((err) => {
     if (err) {
