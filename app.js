@@ -33,7 +33,7 @@ passport.deserializeUser(async (id, done) => {
 // const apiRouter = require ('./api')
 
 const syncDb = async () => {
-  await db.sync({ /*alter: true,*/ force: true })
+  await db.sync()
 }
 
 const configApp = () => {
@@ -47,7 +47,7 @@ const configApp = () => {
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
    app.use(cors({ credentials: true, origin: [
-    "https://recipeio.netlify.app/", "https://capstone-recipe-db.herokuapp.com/" ], exposedHeaders: ["set-cookie"] }))
+    "https://capstone-recipe-db.herokuapp.com/", "https://recipeio.netlify.app/" ], exposedHeaders: ["set-cookie"] }))
 
   app.use('/static', express.static(path.join(__dirname, 'public', 'uploads')))
 
