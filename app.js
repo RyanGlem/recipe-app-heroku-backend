@@ -46,7 +46,7 @@ const configApp = () => {
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
    app.use(cors({ credentials: true, origin: [
-    "http://localhost:3001", "http://localhost:8080" ], exposedHeaders: ["set-cookie"] }))
+    "https://recipeio.netlify.app/", "https://capstone-recipe-db.herokuapp.com/" ], exposedHeaders: ["set-cookie"] }))
 
   app.use('/static', express.static(path.join(__dirname, 'public', 'uploads')))
 
