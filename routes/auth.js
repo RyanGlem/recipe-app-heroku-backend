@@ -50,7 +50,7 @@ router.delete("/logout", (req, res, next) => {
 });
 
 router.get("/me", (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*')
+    res.set('Access-Control-Allow-Origin', 'https://recipeio.netlify.app/')
    if (!!(req?.user ?? false)) res.json(req.user);
   else res.status(401).send()
 });
