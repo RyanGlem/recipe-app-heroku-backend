@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const dotenv = require('dotenv')
 dotenv.config()
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_JADE_URL, {
     dialect: 'postgres',
     protocol: 'postgres',
     dialectOptions: {
