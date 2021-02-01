@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const cors = require ('cors')
 const { User } = require("../database/models");
+
+router.options('*', cors())
+router.use (cors())
 
 router.post("/login", async (req, res, next) => {
   try {
-    res.set('Access-Control-Allow-Origin', 'https://recipeio.netlify.app')
     const user = await User.findOne({ 
         where: (req.body?.email ?? false) ? { email: req.body.email } : { username: req.body.username } 
     });
