@@ -6,7 +6,7 @@ const { User } = require("../database/models");
 router.options('*', cors())
 router.use (cors())
 
-router.post("/login", async (req, res, next) => {
+router.post("/login", cors(), async (req, res, next) => {
   try {
     const user = await User.findOne({ 
         where: (req.body?.email ?? false) ? { email: req.body.email } : { username: req.body.username } 
