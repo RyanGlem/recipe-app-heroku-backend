@@ -3,10 +3,14 @@ const router = express.Router();
 const cors = require ('cors')
 const { User } = require("../database/models");
 
+const corsOptions = {
+  origin: 'https://recipeio.netlify.app',
+  optionsSuccessStatus: 200,
+}
 router.options('*', cors())
 router.use (cors())
 
-router.post("/login", cors(), async (req, res, next) => {
+router.post("/login", cors(corsOptions), async (req, res, next) => {
   try {
     const user = await User.findOne({ 
         where: (req.body?.email ?? false) ? { email: req.body.email } : { username: req.body.username } 
